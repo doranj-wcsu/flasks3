@@ -1,12 +1,12 @@
 import boto3
 import uuid
 
-s3_resource = boto3.resource('s3',  aws_access_key_id="AKIA4W6XKYAJWVNZ4GV5",aws_secret_access_key= "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")
+s3_resource = boto3.resource('s3',  aws_access_key_id="xxxxx",aws_secret_access_key= "xxxxxx")
 
 '''  s3_client = boto3.client('s3')   '''
 
-s3 = boto3.resource('s3',         aws_access_key_id="AKIA4W6XKYAJWVNZ4GV5",aws_secret_access_key= "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")
-s3_client = boto3.client('s3',  aws_access_key_id="AKIA4W6XKYAJWVNZ4GV5",aws_secret_access_key= "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")
+s3 = boto3.resource('s3',         aws_access_key_id="xxxxxx",aws_secret_access_key= "xxxxx")
+s3_client = boto3.client('s3',  aws_access_key_id="xxxxxxxx",aws_secret_access_key= "xxxxx")
 
 def create_bucket_name(bucket_prefix):
     # The generated bucket name must be between 3 and 63 chars long
@@ -24,7 +24,7 @@ s3_resource.create_bucket(Bucket=BN,
                               'LocationConstraint': 'us-east-2'})
 
 # Retrieve the list of existing buckets
-s3 = boto3.client('s3',  aws_access_key_id="AKIA4W6XKYAJWVNZ4GV5",aws_secret_access_key= "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")
+s3 = boto3.client('s3',  aws_access_key_id="xxxxxxxx",aws_secret_access_key= "xxxxxx")
 
 response = s3.list_buckets()
 
