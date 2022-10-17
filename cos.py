@@ -1,23 +1,16 @@
 import boto3
-
-''''
- s3 = boto3.resource('s3',
-         aws_access_key_id=ACCESS_ID,
-         aws_secret_access_key= ACCESS_KEY)
-
- '''
-
-s3_resource = boto3.resource('s3')
-
-s3_client = boto3.client('s3')
-
 import uuid
 
+s3_resource = boto3.resource('s3',  aws_access_key_id="xxxxx",aws_secret_access_key= "xxxxxx")
+
+'''  s3_client = boto3.client('s3')   '''
+
+s3 = boto3.resource('s3',         aws_access_key_id="xxxxxx",aws_secret_access_key= "xxxxx")
+s3_client = boto3.client('s3',  aws_access_key_id="xxxxxxxx",aws_secret_access_key= "xxxxx")
 
 def create_bucket_name(bucket_prefix):
     # The generated bucket name must be between 3 and 63 chars long
     return ''.join([bucket_prefix, str(uuid.uuid4())])
-
 
 
 bucket_prefix='jrd'
@@ -25,27 +18,20 @@ BN = ''.join([bucket_prefix, str(uuid.uuid4())])
 print ( "New Bucket about to be created:   " ,BN)
 print(' ')
 
-
-
-
 # create a new unique bucket 
 s3_resource.create_bucket(Bucket=BN,
                           CreateBucketConfiguration={
                               'LocationConstraint': 'us-east-2'})
 
-
-
-
-
 # Retrieve the list of existing buckets
-s3 = boto3.client('s3')
+s3 = boto3.client('s3',  aws_access_key_id="xxxxxxxx",aws_secret_access_key= "xxxxxx")
+
 response = s3.list_buckets()
 
 # Output the bucket names
 print('Existing buckets:')
 for bucket in response['Buckets']:
     print(f'  {bucket["Name"]}')
-
 
 
 #upload the file 
@@ -59,13 +45,8 @@ s3_resource.Object(BN, first_file_name).download_file(
     f'abc{first_file_name}')
 
 
-
-
 for bucket_dict in s3_resource.meta.client.list_buckets().get('Buckets'):
     print(bucket_dict['Name'])
-
-
-
 
 def delete_all_objects(bucket_name):
     res = []
@@ -76,23 +57,12 @@ def delete_all_objects(bucket_name):
     print(res)
     bucket.delete_objects(Delete={'Objects': res})
 
-
 # delete objects 
 delete_all_objects(BN)
 
 # delete bucket , however it must be empty first;  
 s3_resource.Bucket(BN).delete()
 
-
-
-
-
-
-
 print (" ")
 print ("Finished")
-
-
-
-
 
