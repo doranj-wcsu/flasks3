@@ -5,8 +5,8 @@ import uuid
 #boto3.set_stream_logger('botocore', level='DEBUG')
 
 s3_resource = boto3.resource('s3',
-         aws_access_key_id=‘xxxxx',
-         aws_secret_access_key= ‘YYYYYYYYYY')
+         aws_access_key_id=‘XXXXXXXXXXXXX',
+         aws_secret_access_key= ‘YYYYYYYYYYY')
 
 s3_client = boto3.client('s3',
          aws_access_key_id=‘XXXXXXXXXXXXX',
